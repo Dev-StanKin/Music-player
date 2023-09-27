@@ -3,24 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Error, Loader, SongCard } from '../components';
 import { selectGenreListId } from '../redux/features/playerSlice';
-import {
-  useGetSongsByGenreQuery,
-  useGetTopChartsQuery,
-} from '../redux/services/shazamCore';
+import { useGetSongsByGenreQuery } from '../redux/services/shazamCore';
 import { genres } from '../assets/constants';
 
 const Discover = () => {
   const dispatch = useDispatch();
   const { genreListId } = useSelector((state) => state.player);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  // const { tracks } = useGetSongsByGenreQuery();
-  const { tracks } = useGetTopChartsQuery();
+  const { tracks, isFetching, error } = useGetSongsByGenreQuery(
+    genreListId || 'POP'
+  );
 
-  // if (isFetching) return <Loader title="Loading songs..." />;
+  if (isFetching) return <Loader title="Loading songs..." />;
 
-  // if (error) return <Error />;
+  if (error) return <Error />;
 
   const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
+
   const currentTime = new Date().getHours();
   let greeting;
 
