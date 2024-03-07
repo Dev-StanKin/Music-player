@@ -11,7 +11,7 @@ import {
 
 const SongDetails = () => {
   const dispatch = useDispatch();
-  const { songid, id: artistId } = useParams();
+  const { id: songid, id: artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   const {
@@ -19,7 +19,7 @@ const SongDetails = () => {
     isFetching: isFetchinRelatedSongs,
     error,
   } = useGetSongRelatedQuery({ songid });
-  const { tracks: songData, isFetching: isFetchingSongDetails } =
+  const { data: songData, isFetching: isFetchingSongDetails } =
     useGetSongDetailsQuery({ songid });
 
   if (isFetchingSongDetails && isFetchinRelatedSongs)
