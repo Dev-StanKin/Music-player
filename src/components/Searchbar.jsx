@@ -5,12 +5,12 @@ import { FiSearch } from 'react-icons/fi';
 
 const Searchbar = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
+  const [term, setTerm] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate(`/search/${searchTerm}`);
+    navigate(`/search/${term}`);
   };
 
   return (
@@ -31,8 +31,8 @@ const Searchbar = () => {
           className="flex-1 bg-transparent border-none placeholder-gray-500 outline-none text-base text-white p-4"
           placeholder="Search"
           type="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
         />
       </div>
     </form>

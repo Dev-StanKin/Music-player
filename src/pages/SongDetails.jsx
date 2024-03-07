@@ -11,11 +11,11 @@ import {
 
 const SongDetails = () => {
   const dispatch = useDispatch();
-  const { songid, id: artistId } = useParams();
+  const { id: songid, id: artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   const {
-    tracks,
+    data,
     isFetching: isFetchinRelatedSongs,
     error,
   } = useGetSongRelatedQuery({ songid });
@@ -34,7 +34,7 @@ const SongDetails = () => {
   };
 
   const handlePlayClick = (song, i) => {
-    dispatch(setActiveSong({ song, tracks, i }));
+    dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
 
@@ -64,7 +64,7 @@ const SongDetails = () => {
       </div>
 
       <RelatedSongs
-        tracks={tracks}
+        data={data}
         artistId={artistId}
         isPlaying={isPlaying}
         activeSong={activeSong}

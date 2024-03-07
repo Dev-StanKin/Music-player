@@ -26,7 +26,7 @@ export const shazamCoreApi = createApi({
         `/charts/get-top-songs-in-country?country_code=${countryCode}`,
     }),
     getSongsBySearch: builder.query({
-      query: (searchTerm) => `/search/=${searchTerm}`,
+      query: (term) => `/search?search_type=SONGS_ARTISTS&query=${term}`,
     }),
     getArtistDetails: builder.query({
       query: (id) => `/artist/get-details?id=${id}`,
@@ -35,7 +35,7 @@ export const shazamCoreApi = createApi({
       query: ({ id }) => `/songs/get_details?id=${id}`,
     }),
     getSongRelated: builder.query({
-      query: ({ songid }) => `/songs/list-recommendations?id=${songid}`,
+      query: ({ id }) => `/songs/list-recommendations?id=${id}`,
     }),
   }),
 });
