@@ -11,7 +11,7 @@ import {
 
 const SongDetails = () => {
   const dispatch = useDispatch();
-  const { id: songid, id: artistId } = useParams();
+  const { songid, id: artistId } = useParams();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
   const {

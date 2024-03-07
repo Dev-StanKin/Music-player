@@ -4,7 +4,7 @@ import { ArtistCard, Error, Loader } from '../components';
 import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 
 const TopArtists = () => {
-  const { tracks, isFetching, error } = useGetTopChartsQuery();
+  const { data: tracks, isFetching, error } = useGetTopChartsQuery();
 
   if (isFetching) return <Loader title="Loading artists..." />;
 
